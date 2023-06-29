@@ -6,9 +6,11 @@ import {
 
 import BasicLayout from './Layouts/BasicLayout';
 
+import Crew from './Pages/Crew';
+import Launches from './Pages/Launches';
 import Home from './Pages/Home';
-
-// import { authLoader } from './loaders/authLoader';
+import History from './Pages/History';
+import Page_404 from './Pages/Page_404';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <>
@@ -18,15 +20,23 @@ const router = createBrowserRouter(createRoutesFromElements(
         path="/"
         element={<Home />}
       />
-
       <Route
-        path=""
-        // loader={}
-        element={<Home />}
+        path="/crew"
+        element={<Crew />}
       />
+      <Route
+        path="/history"
+        element={<History />}
+      />
+      <Route
+        path="/launches"
+        element={<Launches />}
+      />
+
+      <Route path="*" element={<Page_404 />} />
     </Route>
 
-    {/* <Route path="*" element={<Page_404 />} /> */}
+
   </>
 ));
 
