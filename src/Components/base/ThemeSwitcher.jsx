@@ -7,7 +7,7 @@ const ThemeSwitcher = () => {
 
   document.documentElement.setAttribute("data-theme", theme);
 
-  const onThemeChange = (e) => {
+  const onThemeChange = () => {
     const themeMap = {
       setDark: () => {
         setTheme("dark");
