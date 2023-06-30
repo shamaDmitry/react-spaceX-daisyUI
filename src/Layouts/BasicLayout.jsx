@@ -5,7 +5,7 @@ const BasicLayout = () => {
   return (
     <>
       <div className="h-screen flex flex-col">
-        <header>
+        <header className="mb-5">
           <Navigation />
         </header>
 

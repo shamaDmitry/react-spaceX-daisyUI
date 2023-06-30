@@ -6,15 +6,20 @@ const ThemeSwitcher = () => {
   const [theme, setTheme] = useAtom(themeAtom);
 
   document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.classList.add(theme);
 
   const onThemeChange = () => {
     const themeMap = {
       setDark: () => {
         setTheme("dark");
+        document.documentElement.classList.remove(theme);
+        document.documentElement.classList.add("dark");
         document.documentElement.setAttribute("data-theme", "dark");
       },
       setLight: () => {
         setTheme("light");
+        document.documentElement.classList.remove(theme);
+        document.documentElement.classList.add("light");
         document.documentElement.setAttribute("data-theme", "light");
       }
     }

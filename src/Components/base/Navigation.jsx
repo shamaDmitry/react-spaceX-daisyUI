@@ -26,8 +26,8 @@ const Navigation = () => {
   return (
     <>
       <div className="container">
-        <div className="navbar bg-base-100">
-          <div className="navbar-start">
+        <div className="navbar bg-base-100 px-0">
+          <div className="navbar-start gap-2 flex items-center">
             <div className="dropdown">
               <label tabIndex={0} className="btn btn-ghost lg:hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -45,9 +45,9 @@ const Navigation = () => {
               </ul>
             </div>
 
-            <Link to="/">
+            <Link to="/" className="flex flex-shrink-0 max-w-[200px] w-full">
               <Logo
-                className={classNames("mx-auto w-52", {
+                className={classNames("mx-auto w-full", {
                   "text-white": theme === "dark",
                   "text-black": theme === "light",
                 })}
@@ -55,7 +55,7 @@ const Navigation = () => {
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 z-20">
+            <ul className="menu menu-horizontal px-1 z-20 gap-2">
               {menu.map((item) => {
                 return (
                   <li key={JSON.stringify(item)}>
