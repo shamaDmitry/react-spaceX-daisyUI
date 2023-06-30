@@ -43,6 +43,7 @@ const TimelineItem = ({ data }) => {
         <a
           href={links?.article}
           target="_blank"
+          rel="noreferrer"
           className="text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
         >
           Details: {links?.article}

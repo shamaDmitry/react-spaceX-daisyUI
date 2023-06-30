@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import Footer from '../Components/base/Footer';
 import Navigation from '../Components/base/Navigation';
 
 const BasicLayout = () => {
@@ -13,9 +14,7 @@ const BasicLayout = () => {
           <Outlet />
         </main>
 
-        <footer className="container py-4">
-          footer
-        </footer>
+        <Footer />
       </div>
     </>
   );

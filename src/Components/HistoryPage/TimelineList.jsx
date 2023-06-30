@@ -18,7 +18,7 @@ const TimelineList = () => {
       </div>}
 
       <div className="relative border-l border-gray-300 dark:border-gray-700 ml-3">
-        {data?.map((item) => <TimelineItem key={item.id} data={item} />)}
+        {data?.reverse().map((item) => <TimelineItem key={item.id} data={item} />)}
       </div>
     </>
   );

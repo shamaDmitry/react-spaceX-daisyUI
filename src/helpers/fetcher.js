@@ -1,16 +1,16 @@
 import axios from 'axios';
-import { API_URL } from '../config'; 
+import { API_URL } from '../config';
 
 const basicConfig = {
   baseURL: API_URL
 };
 
-export const fetcher = (path) => {
-  return axios.get(path, {
+export const fetcher = async (path) => {
+  const response = await axios.get(path, {
     ...basicConfig,
-  }).then((response) => {
-    return response.data;
   });
+
+  return response.data;
 }
 
 // export const _axios = axios.create({
