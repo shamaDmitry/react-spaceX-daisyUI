@@ -24,7 +24,7 @@ const Launches = () => {
         {
           data?.map(item => {
             return (
-              <div key={item.id} className="card border w-full bg-base-100 shadow-lg dark:border-white dark:text-white">
+              <div key={item.id} className="card border w-full bg-base-100 shadow-lg dark:border-gray-700 dark:text-white">
                 {/* <figure><img src={item.image} alt={item.name} /></figure> */}
 
                 <div className="card-body">

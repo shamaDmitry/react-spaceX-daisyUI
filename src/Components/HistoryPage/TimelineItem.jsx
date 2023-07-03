@@ -1,13 +1,14 @@
+import PropTypes from 'prop-types';
 import dayjs from "../../helpers/dayjs";
 
 const TimelineItem = ({ data }) => {
-    const {
-      title,
-      event_date_utc,
-      details,
-      links,
-    } = data;
-  
+  const {
+    title,
+    event_date_utc,
+    details,
+    links,
+  } = data;
+
   return (
     <div className="mb-10 ml-8">
       <span
@@ -51,6 +52,10 @@ const TimelineItem = ({ data }) => {
       }
     </div>
   );
+}
+
+TimelineItem.propTypes = {
+  data: PropTypes.object.isRequired
 }
 
 export default TimelineItem;

@@ -11,6 +11,7 @@ import Launches from './Pages/Launches';
 import Home from './Pages/Home';
 import History from './Pages/History';
 import Page_404 from './Pages/Page_404';
+import Rockets from './Pages/Rockets';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <>
@@ -23,6 +24,10 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route
         path="/crew"
         element={<Crew />}
+      />
+      <Route
+        path="/rockets"
+        element={<Rockets />}
       />
       <Route
         path="/history"

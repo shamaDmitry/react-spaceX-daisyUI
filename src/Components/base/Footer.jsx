@@ -7,7 +7,7 @@ const Footer = () => {
   const [theme,] = useAtom(themeAtom);
 
   return (
-    <footer className="py-4 border-t mt-10">
+    <footer className="py-4 border-t mt-10 dark:border-gray-700">
       <div className="container text-center">
         <Logo className={classNames("w-40 inline-flex", {
           "text-white": theme === "dark",
