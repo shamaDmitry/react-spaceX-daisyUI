@@ -12,6 +12,7 @@ import Home from './Pages/Home';
 import History from './Pages/History';
 import Page_404 from './Pages/Page_404';
 import Rockets from './Pages/Rockets';
+import Rocket from './Pages/Rocket';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <>
@@ -28,6 +29,10 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route
         path="/rockets"
         element={<Rockets />}
+      />
+      <Route
+        path="/rockets/:id/"
+        element={<Rocket />}
       />
       <Route
         path="/history"

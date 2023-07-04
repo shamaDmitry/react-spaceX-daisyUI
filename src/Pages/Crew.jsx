@@ -3,6 +3,7 @@ import { XCircleIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import useSWR from "swr";
 import CrewCard from "../Components/CrewPage/CrewCard";
+import Loader from "../Components/base/Loader"
 import { fetcher } from "../helpers/fetcher";
 
 const CrewContainer = ({ children }) => {
@@ -27,9 +28,7 @@ const Crew = () => {
 
   if (isLoading) return (
     <CrewContainer>
-      <div className="text-center">
-        <span className="loading loading-spinner loading-lg"></span>
-      </div>
+      <Loader />
     </CrewContainer>
   )
 

@@ -6,6 +6,7 @@ import { fetcher } from '../../helpers/fetcher';
 
 import Modal from '../base/Modal';
 import ModalContent from './ModalContent';
+import Loader from "../base/Loader";
 
 const CrewCard = ({ user }) => {
   const { data: launches, error, isLoading } = useSWR(`/v4/launches/${user.launches[0]}`, fetcher)
@@ -16,7 +17,7 @@ const CrewCard = ({ user }) => {
 
   if (isLoading) return <div className="border card bg-base-100 shadow-xl dark:border-gray-700">
     <div className="card-body items-center">
-      <span className="loading loading-spinner"></span>
+      <Loader type="dots" />
     </div>
   </div>;
 

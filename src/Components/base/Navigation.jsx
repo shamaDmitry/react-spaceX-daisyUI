@@ -11,16 +11,16 @@ const menu = [
     title: "Crew",
   },
   {
-    link: "/history",
-    title: "History",
-  },
-  {
     link: "/rockets",
     title: "Rockets",
   },
   {
     link: "/launches",
     title: "Launches",
+  },
+  {
+    link: "/history",
+    title: "History",
   },
 ]
 

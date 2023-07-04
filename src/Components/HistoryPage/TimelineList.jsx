@@ -2,15 +2,12 @@ import useSWR from 'swr';
 import { fetcher } from '../../helpers/fetcher';
 import TimelineItem from './TimelineItem';
 import { XCircleIcon } from '@heroicons/react/24/solid'
+import Loader from "../base/Loader";
 
 const TimelineList = () => {
   const { data, error, isLoading } = useSWR("/latest/history", fetcher);
 
-  if (isLoading) return (
-    <div className="text-center">
-      <span className="loading loading-spinner loading-lg"></span>
-    </div>
-  )
+  if (isLoading) return <Loader />
 
   if (error) return (
     <div className="alert alert-error dark:text-white">

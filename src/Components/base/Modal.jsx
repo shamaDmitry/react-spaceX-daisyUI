@@ -13,6 +13,10 @@ const Modal = ({ id, className, title, children }) => {
 
         {children}
       </form>
+
+      <form method="dialog" className="modal-backdrop">
+        <button>close</button>
+      </form>
     </dialog>
   );
 }
