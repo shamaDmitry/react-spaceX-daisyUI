@@ -82,7 +82,6 @@ const Rocket = () => {
                     {data.success_rate_pct}%
                   </div>
                 </div>
-
               </div>
             </div>
 

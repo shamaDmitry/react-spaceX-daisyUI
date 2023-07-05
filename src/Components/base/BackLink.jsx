@@ -18,6 +18,7 @@ const BackLink = ({ text, onClick, className }) => {
 BackLink.propTypes = {
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
 }
 
 export default BackLink;
