@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useSWR from "swr";
 
 import dayjs from "../../helpers/dayjs";
@@ -19,20 +20,21 @@ const UpcomingLaunches = () => {
 
   return (
     <section className="">
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-5 gap-4">
         {data.map(item => {
           return (
-            <div
+            <Link
+              to={`/launches/${item.id}`}
               key={item.id}
-              className="flex gap-4 mb-4 border p-4 flex-col dark:border-gray-500"
+              className="flex gap-4 flex-col border dark:border-gray-500 p-4 transition  hover:scale-105"
             >
-              <span>
+              <span className="text-lg font-bold">
                 {item.name}
               </span>
               <span>
                 {dayjs(item.date_local).format('LLL')}
               </span>
-            </div>
+            </Link>
           )
         })}
       </div>
