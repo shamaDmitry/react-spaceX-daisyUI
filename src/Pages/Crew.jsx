@@ -50,7 +50,7 @@ const Crew = () => {
 
         <div className="flex">
           <select
-            className="border bg-white w-full py-2 px-3 cursor-pointer dark:bg-gray-700 dark:border-gray-700"
+            className="border bg-white w-full py-2 px-3 cursor-pointer dark:bg-gray-700 dark:border-gray-700 dark:bg-transparent"
             defaultValue="all"
             onChange={(e) => setFilter(e.target.value)}
           >

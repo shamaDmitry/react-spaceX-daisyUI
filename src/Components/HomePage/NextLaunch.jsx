@@ -19,8 +19,8 @@ const NextLaunch = () => {
   )
 
   return (
-    <div className="text-center min-h-16">
-      <div className="border inline-flex flex-col p-4 w-full max-w-lg dark:border-gray-500">
+    <div className="text-center min-h-16 mb-6">
+      <div className="border inline-flex flex-col p-4 w-full max-w-lg dark:border-gray-900 shadow-2xl">
         <figure className="mb-4">
           {
             data.links.patch.small ?
@@ -47,7 +47,6 @@ const NextLaunch = () => {
           targetTime={new Date(data.date_unix)}
         />
       </div>
-
     </div>
   );
 }

@@ -1,101 +1,65 @@
-import { useEffect, useState } from "react";
+import { debounce } from "lodash";
 
-import dayjs from "../../helpers/dayjs";
-import { _axios } from '../../helpers/fetcher';
 import useQuery from "../../hooks/useQuery";
-import BackLink from "../base/BackLink";
+import { _axios } from '../../helpers/fetcher';
 
-import ErrorAlert from "../base/ErrorAlert";
 import Loader from "../base/Loader";
+import ErrorAlert from "../base/ErrorAlert";
 import PastLaunchesList from "./PastLaunchesList";
-
-
+import Input from "../base/Input";
+import Pagination from "../base/Pagination";
 
 const PastLaunches = () => {
-  const { data, error, isLoading, pageIndex, setPageIndex, meta } = useQuery('/v4/launches/query');
+  const { data, error, isLoading, setQuery, setOptions, meta } = useQuery('/v4/launches/query');
 
-  // const { data, error, isLoading } = useSWR(`/v4/launches/query/`, (url) => {
-  //   return _axios.post(url, {
-  //     "query": {
-  //       "$text": {
-  //         "$search": "blue"
-  //       }
-  //     },
-  //     "options": {
-  //       limit: 10,
-  //       page: pageIndex,
-  //       "populate": [
-  //         {
-  //           path: "launchpad",
-  //           populate: [
-  //             "launches"
-  //           ]
-  //         },
-  //         {
-  //           "path": "rocket",
-  //           "select": ['name', 'country', 'descripPastLaunchesListtion']
-  //         }
-  //       ]
-  //     },
-  //   })
-  // })
+  const handleSearch = (e) => {
+    if (e.target.value) {
+      setOptions((prevState) => {
+        return {
+          ...prevState,
+          page: 1,
+        }
+      });
 
-  // _axios.post('/v4/launches/query', {
-  //   "query": {},
-  //   "options": {
-  //     limit: 10,
-  //     "populate": [
-  //       {
-  //         "path": "rocket",
-  //         "select": ['name', 'country', 'description']
-  //       }
-  //     ]
-  //   },
-  // })
+      setQuery({
+        $text: {
+          $search: e.target.value,
+        }
+      })
+    } else {
+      setQuery(null);
+    }
+  }
 
   if (error) return (
     <ErrorAlert
       text="Latest launches failed"
     />
   )
-  console.log(data);
 
   return (
-    <div className="">
+    <div className="border p-6 shadow-2xl dark:border-gray-900">
+      <Input
+        placeholder="Search past"
+        onChange={debounce(handleSearch, 500)}
+      />
+
       {
         isLoading ?
-          <div className="min-h-[300px]">
+          <div className="min-h-[188px]">
             <Loader />
-          </div> :
+          </div>
+          :
           <PastLaunchesList items={data} />
       }
 
-      <div className="flex items-center justify-end gap-10 my-5">
-        <div className="flex gap-2">
-          <span className="capitalize">page:</span>
-          {pageIndex} / {meta?.totalPages}
-        </div>
-
-        <div className="flex gap-2">
-          {meta?.hasPrevPage &&
-            <button
-              className="capitalize border transition-all flex items-center font-medium py-1 px-2 text-sm dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-slate-800 dark:border-gray-500"
-              onClick={() => setPageIndex((prevState) => prevState - 1)}
-            >
-              prev
-            </button>
-          }
-
-          {meta?.hasNextPage &&
-            <button
-              className="capitalize border transition-all flex items-center font-medium py-1 px-2 text-sm dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-slate-800 dark:border-gray-500"
-              onClick={() => setPageIndex((prevState) => prevState + 1)}
-            >
-              next
-            </button>
-          }
-        </div>
-      </div>
+      <Pagination
+        page={meta?.page}
+        totalPages={meta?.totalPages}
+        hasPrevPage={meta?.hasPrevPage}
+        hasNextPage={meta?.hasNextPage}
+        setOptions={setOptions}
+      />
     </div>
   );
 }

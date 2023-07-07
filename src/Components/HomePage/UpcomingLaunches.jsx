@@ -1,44 +1,72 @@
-import { Link } from "react-router-dom";
-import useSWR from "swr";
+import { useEffect } from "react";
+import { debounce } from "lodash";
 
-import dayjs from "../../helpers/dayjs";
-import { fetcher } from '../../helpers/fetcher';
+import useQuery from "../../hooks/useQuery";
 
+import Input from "../base/Input";
 import ErrorAlert from "../base/ErrorAlert";
 import Loader from "../base/Loader";
+import Pagination from "../base/Pagination";
+import UpcomingLaunchesList from "./UpcomingLaunchesList";
 
 const UpcomingLaunches = () => {
-  const { data, error, isLoading } = useSWR(`/v4/launches/upcoming`, fetcher)
+  const { data, error, isLoading, setQuery, setOptions, meta } = useQuery('/v4/launches/query');
 
-  if (isLoading) return <Loader />
+  useEffect(() => {
+    setQuery({ upcoming: true })
+    return () => { };
+  }, []);
+
+  const handleSearch = (e) => {
+    if (e.target.value) {
+      setOptions((prevState) => {
+        return {
+          ...prevState,
+          page: 1,
+        }
+      });
+
+      setQuery(prevState => ({
+        ...prevState,
+        $text: {
+          $search: e.target.value,
+        }
+      }))
+    } else {
+      // setQuery(null);
+    }
+  }
 
   if (error) return (
     <ErrorAlert
-      text="Next launch failed"
+      text="Upcoming launch failed"
     />
   )
 
   return (
-    <section className="">
-      <div className="grid grid-cols-5 gap-4">
-        {data.map(item => {
-          return (
-            <Link
-              to={`/launches/${item.id}`}
-              key={item.id}
-              className="flex gap-4 flex-col border dark:border-gray-500 p-4 transition  hover:scale-105"
-            >
-              <span className="text-lg font-bold">
-                {item.name}
-              </span>
-              <span>
-                {dayjs(item.date_local).format('LLL')}
-              </span>
-            </Link>
-          )
-        })}
-      </div>
-    </section>
+    <div className="border p-6 shadow-2xl dark:border-gray-900">
+      <Input
+        placeholder="Search upcoming"
+        onChange={debounce(handleSearch, 500)}
+      />
+
+      {
+        isLoading ?
+          <div className="min-h-[188px]">
+            <Loader />
+          </div>
+          :
+          <UpcomingLaunchesList items={data} />
+      }
+
+      <Pagination
+        page={meta?.page}
+        totalPages={meta?.totalPages}
+        hasPrevPage={meta?.hasPrevPage}
+        hasNextPage={meta?.hasNextPage}
+        setOptions={setOptions}
+      />
+    </div>
   );
 }
 
