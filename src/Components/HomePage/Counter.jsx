@@ -55,13 +55,13 @@ const Counter = ({ isClosed, title, titleExpired, targetTime }) => {
   }, [targetTime])
 
   return (
-    <div className="flex flex-col items-center gap-4 mb-8 text-centers">
-      <div className='flex justify-center font-bold text-xl'>
+    <div className="flex flex-col items-center gap-4 mb-8">
+      <div className='flex font-bold text-xl'>
         {isExpired ? titleExpired : title}
       </div>
 
       <div className={
-        classNames('inline-flex gap-4 select-none', {
+        classNames('flex gap-2 md:gap-4 select-none w-full', {
           'opacity-50 cursor-not-allowed': isExpired
         })
       }>
@@ -69,8 +69,8 @@ const Counter = ({ isClosed, title, titleExpired, targetTime }) => {
           Object.entries(timeObj).map(obj => (
             <div
               key={obj[0]}
-              className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-              <span className="font-mono text-5xl">
+              className="flex flex-1 flex-col p-2 bg-neutral rounded-box text-neutral-content">
+              <span className="font-mono text-2xl md:text-5xl">
                 {obj[1] < 10 ? `0${obj[1]}` : obj[1]}
               </span>
 

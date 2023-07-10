@@ -1,7 +1,6 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import { debounce } from "lodash";
-
-import useQuery from "../../hooks/useQuery";
+import useSWR from "swr";
 
 import Input from "../base/Input";
 import ErrorAlert from "../base/ErrorAlert";
@@ -9,31 +8,44 @@ import Loader from "../base/Loader";
 import Pagination from "../base/Pagination";
 import UpcomingLaunchesList from "./UpcomingLaunchesList";
 
-const UpcomingLaunches = () => {
-  const { data, error, isLoading, setQuery, setOptions, meta } = useQuery('/v4/launches/query');
+import { postFetcher } from "../../helpers/fetchers";
 
-  useEffect(() => {
-    setQuery({ upcoming: true })
-    return () => { };
-  }, []);
+const UpcomingLaunches = () => {
+  const [query, setQuery] = useState({
+    upcoming: true,
+  })
+  const [options, setOptions] = useState({
+    page: 1,
+  })
+
+  const { data, isLoading, error } = useSWR({ url: '/v4/launches/query', query, options }, postFetcher);
 
   const handleSearch = (e) => {
     if (e.target.value) {
-      setOptions((prevState) => {
-        return {
-          ...prevState,
-          page: 1,
-        }
-      });
-
       setQuery(prevState => ({
         ...prevState,
         $text: {
           $search: e.target.value,
         }
       }))
+
+      setOptions((prevState) => {
+        return {
+          ...prevState,
+          page: 1,
+        }
+      });
     } else {
-      // setQuery(null);
+      setQuery(() => ({
+        upcoming: true,
+      }));
+
+      setOptions((prevState) => {
+        return {
+          ...prevState,
+          page: 1,
+        }
+      });
     }
   }
 
@@ -56,14 +68,14 @@ const UpcomingLaunches = () => {
             <Loader />
           </div>
           :
-          <UpcomingLaunchesList items={data} />
+          <UpcomingLaunchesList items={data.docs} />
       }
 
       <Pagination
-        page={meta?.page}
-        totalPages={meta?.totalPages}
-        hasPrevPage={meta?.hasPrevPage}
-        hasNextPage={meta?.hasNextPage}
+        page={data?.page}
+        totalPages={data?.totalPages}
+        hasPrevPage={data?.hasPrevPage}
+        hasNextPage={data?.hasNextPage}
         setOptions={setOptions}
       />
     </div>

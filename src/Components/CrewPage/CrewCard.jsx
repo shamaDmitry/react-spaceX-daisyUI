@@ -24,9 +24,9 @@ const CrewCard = ({ user }) => {
   if (error) return "An error has occurred.";
 
   return (
-    <div className="border card bg-base-100 shadow-xl dark:border-gray-700">
-      <figure className="h-96">
-        <img className="h-full object-cover" src={user.image} alt={user.name} loading="lazy" />
+    <div className="border rounded-none card bg-base-100 shadow-xl dark:border-gray-700">
+      <figure className={classNames("h-96 relative")}>
+        <img className="absolute w-full object-cover left-0 top-0 " src={user.image} alt={user.name} loading="lazy" />
       </figure>
 
       <div className="card-body p-4">
@@ -67,7 +67,7 @@ const CrewCard = ({ user }) => {
           </Modal>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

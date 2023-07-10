@@ -7,7 +7,7 @@ const Launch = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div className="container">
       <BackLink
         text="Go back"
         onClick={() => navigate(-1)}
@@ -16,7 +16,7 @@ const Launch = () => {
       <div>
         {JSON.stringify(params)}
       </div>
-    </>
+    </div>
   );
 }
 

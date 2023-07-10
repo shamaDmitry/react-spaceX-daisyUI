@@ -1,15 +1,15 @@
+import useSWR from 'swr';
 import { debounce } from "lodash";
+import { useState } from 'react';
 
 import Loader from "../base/Loader";
 import ErrorAlert from "../base/ErrorAlert";
 import PastLaunchesList from "./PastLaunchesList";
 import Input from "../base/Input";
 import Pagination from "../base/Pagination";
-import useSWR from  'swr';
-import { _axios } from '../../helpers/fetcher'
-import { useState } from 'react';
-import { postFetcher } from "../../helpers/fetchers";
 
+import { _axios } from '../../helpers/fetcher'
+import { postFetcher } from "../../helpers/fetchers";
 
 const PastLaunches = () => {
   const [query, setQuery] = useState({})
@@ -17,7 +17,8 @@ const PastLaunches = () => {
     page: 1,
   })
 
-  const { data, isLoading, error } = useSWR({ url: '/v4/launches/query', query: query, options: options}, postFetcher);
+  const { data, isLoading, error } = useSWR({ url: '/v4/launches/query', query: query, options: options }, postFetcher);
+
   const handleSearch = (e) => {
     if (e.target.value) {
       setOptions((prevState) => {
