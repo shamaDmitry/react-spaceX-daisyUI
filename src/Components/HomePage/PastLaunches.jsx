@@ -1,17 +1,23 @@
 import { debounce } from "lodash";
 
-import useQuery from "../../hooks/useQuery";
-import { _axios } from '../../helpers/fetcher';
-
 import Loader from "../base/Loader";
 import ErrorAlert from "../base/ErrorAlert";
 import PastLaunchesList from "./PastLaunchesList";
 import Input from "../base/Input";
 import Pagination from "../base/Pagination";
+import useSWR from  'swr';
+import { _axios } from '../../helpers/fetcher'
+import { useState } from 'react';
+import { postFetcher } from "../../helpers/fetchers";
+
 
 const PastLaunches = () => {
-  const { data, error, isLoading, setQuery, setOptions, meta } = useQuery('/v4/launches/query');
+  const [query, setQuery] = useState({})
+  const [options, setOptions] = useState({
+    page: 1,
+  })
 
+  const { data, isLoading, error } = useSWR({ url: '/v4/launches/query', query: query, options: options}, postFetcher);
   const handleSearch = (e) => {
     if (e.target.value) {
       setOptions((prevState) => {
@@ -50,14 +56,14 @@ const PastLaunches = () => {
             <Loader />
           </div>
           :
-          <PastLaunchesList items={data} />
+          <PastLaunchesList items={data.docs} />
       }
 
       <Pagination
-        page={meta?.page}
-        totalPages={meta?.totalPages}
-        hasPrevPage={meta?.hasPrevPage}
-        hasNextPage={meta?.hasNextPage}
+        page={data?.page}
+        totalPages={data?.totalPages}
+        hasPrevPage={data?.hasPrevPage}
+        hasNextPage={data?.hasNextPage}
         setOptions={setOptions}
       />
     </div>
