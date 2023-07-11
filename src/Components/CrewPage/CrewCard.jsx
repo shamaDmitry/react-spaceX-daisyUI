@@ -7,6 +7,7 @@ import { fetcher } from '../../helpers/fetcher';
 import Modal from '../base/Modal';
 import ModalContent from './ModalContent';
 import Loader from "../base/Loader";
+import { Link } from "react-router-dom";
 
 const CrewCard = ({ user }) => {
   const { data: launches, error, isLoading } = useSWR(`/v4/launches/${user.launches[0]}`, fetcher)
@@ -30,7 +31,10 @@ const CrewCard = ({ user }) => {
       </figure>
 
       <div className="card-body p-4">
-        <h2 className="card-title dark:text-white pt-1">
+        <Link
+          to={user.id}
+          className="card-title text-accent hover:text-accent-content pt-1"
+        >
           {user.name}
 
           <span
@@ -41,7 +45,7 @@ const CrewCard = ({ user }) => {
           >
             {user.status}
           </span>
-        </h2>
+        </Link>
 
         <div className="flex gap-3 items-center">
           <span className="capitalize">agency:</span>

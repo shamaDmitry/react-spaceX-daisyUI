@@ -15,8 +15,8 @@ const menu = [
     title: "Rockets",
   },
   {
-    link: "/launches",
-    title: "Launches",
+    link: "/launchpads",
+    title: "Launchpads",
   },
   {
     link: "/history",

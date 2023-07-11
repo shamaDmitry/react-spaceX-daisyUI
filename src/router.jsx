@@ -14,6 +14,9 @@ import Page_404 from './Pages/Page_404';
 import Rockets from './Pages/Rockets';
 import Rocket from './Pages/Rocket';
 import Launch from './Pages/Launch';
+import OnePersonPage from './Pages/OnePersonPage';
+import Launchpads from './Pages/Launchpads';
+import Launchpad from './Pages/Launchpad';
 
 const router = createBrowserRouter(createRoutesFromElements(
   <>
@@ -28,6 +31,10 @@ const router = createBrowserRouter(createRoutesFromElements(
         element={<Crew />}
       />
       <Route
+        path="/crew/:id"
+        element={<OnePersonPage />}
+      />
+      <Route
         path="/rockets"
         element={<Rockets />}
       />
@@ -40,8 +47,12 @@ const router = createBrowserRouter(createRoutesFromElements(
         element={<History />}
       />
       <Route
-        path="/launches"
-        element={<Launches />}
+        path="/launchpads"
+        element={<Launchpads />}
+      />
+      <Route
+        path="/launchpads/:id"
+        element={<Launchpad />}
       />
       <Route
         path="/launches/:id"
@@ -50,8 +61,6 @@ const router = createBrowserRouter(createRoutesFromElements(
 
       <Route path="*" element={<Page_404 />} />
     </Route>
-
-
   </>
 ));
 

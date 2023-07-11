@@ -11,7 +11,7 @@ const ErrorAlert = ({ text }) => {
 }
 
 ErrorAlert.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.string
 }
 
 export default ErrorAlert;
