@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 const Input = ({ className, placeholder, onChange }) => {
   return (
@@ -9,6 +10,12 @@ const Input = ({ className, placeholder, onChange }) => {
       onChange={onChange}
     />
   );
+}
+
+Input.propTypes = {
+  className: PropTypes.string,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
 }
 
 export default Input;

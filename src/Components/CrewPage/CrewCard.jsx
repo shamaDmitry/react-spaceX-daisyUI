@@ -26,9 +26,11 @@ const CrewCard = ({ user }) => {
 
   return (
     <div className="border rounded-none card bg-base-100 shadow-xl dark:border-gray-700">
-      <figure className={classNames("h-96 relative")}>
-        <img className="absolute w-full object-cover left-0 top-0 " src={user.image} alt={user.name} loading="lazy" />
-      </figure>
+      <Link to={user.id}>
+        <figure className={classNames("h-96 relative")}>
+          <img className="absolute w-full object-cover left-0 top-0 " src={user.image} alt={user.name} loading="lazy" />
+        </figure>
+      </Link>
 
       <div className="card-body p-4">
         <Link

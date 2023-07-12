@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import dayjs from "../../helpers/dayjs";
 import Logo from '../shared/Logo';
+import PropTypes from 'prop-types';
 
 const UpcomingLaunchesList = ({ items }) => {
   return (
@@ -39,6 +40,10 @@ const UpcomingLaunchesList = ({ items }) => {
       }) : "Nothing is here"}
     </div>
   );
+}
+
+UpcomingLaunchesList.propTypes = {
+  items: PropTypes.array.isRequired,
 }
 
 export default UpcomingLaunchesList;

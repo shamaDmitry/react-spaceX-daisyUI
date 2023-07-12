@@ -15,7 +15,7 @@ const CrewContainer = ({ children }) => {
 }
 
 CrewContainer.propTypes = {
-  children: PropTypes.any.isRequired
+  children: PropTypes.any.isRequired,
 }
 
 const Crew = () => {

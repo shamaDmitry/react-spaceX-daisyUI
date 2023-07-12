@@ -151,7 +151,7 @@ const Rocket = () => {
       >
         <div className="container max-w-4xl z-10 text-lg">
           <div className="text-center my-4">
-            <div className="inline-flex justify-center gap-2 bg-white/50 p-2">
+            <div className="inline-flex flex-wrap justify-center gap-2 bg-white/50 p-2">
               {data.flickr_images.map((image, index) => {
                 return (
                   <button

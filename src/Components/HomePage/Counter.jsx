@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 const Counter = ({ isClosed, title, titleExpired, targetTime }) => {
@@ -52,7 +53,7 @@ const Counter = ({ isClosed, title, titleExpired, targetTime }) => {
     return () => {
       clearInterval(timer);
     }
-  }, [targetTime])
+  }, [targetTime, isExpired])
 
   return (
     <div className="flex flex-col items-center gap-4 mb-8">
@@ -83,6 +84,13 @@ const Counter = ({ isClosed, title, titleExpired, targetTime }) => {
       </div>
     </div>
   );
+}
+
+Counter.propTypes = {
+  isClosed: PropTypes.bool,
+  title: PropTypes.string,
+  titleExpired: PropTypes.string,
+  targetTime: PropTypes.object,
 }
 
 export default Counter;

@@ -7,7 +7,6 @@ import {
 import BasicLayout from './Layouts/BasicLayout';
 
 import Crew from './Pages/Crew';
-import Launches from './Pages/Launches';
 import Home from './Pages/Home';
 import History from './Pages/History';
 import Page_404 from './Pages/Page_404';

@@ -8,7 +8,6 @@ import PastLaunchesList from "./PastLaunchesList";
 import Input from "../base/Input";
 import Pagination from "../base/Pagination";
 
-import { _axios } from '../../helpers/fetcher'
 import { postFetcher } from "../../helpers/fetchers";
 
 const PastLaunches = () => {

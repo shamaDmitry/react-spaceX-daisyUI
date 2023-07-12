@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import useSWR from 'swr';
 import BackLink from '../Components/base/BackLink';
@@ -14,15 +15,19 @@ const Container = ({ children }) => {
   )
 }
 
+Container.propTypes = {
+  children: PropTypes.any.isRequired,
+}
+
 const OnePersonPage = () => {
   const params = useParams();
   const navigate = useNavigate();
 
-  const [query, setQuery] = useState({
+  const [query,] = useState({
     _id: params.id
   });
 
-  const [options, setOptions] = useState({
+  const [options,] = useState({
     populate: "launches"
   });
 
@@ -58,6 +63,7 @@ const OnePersonPage = () => {
           <a
             href={user.wikipedia}
             target="_blank"
+            rel="noreferrer"
             className="inline-flex gap-1 p-2 hover:opacity-60"
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

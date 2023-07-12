@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import dayjs from "../../helpers/dayjs";
 import Logo from "../shared/Logo";
@@ -39,6 +40,10 @@ const PastLaunchesList = ({ items }) => {
       }) : "Nothing is here"}
     </div>
   )
+}
+
+PastLaunchesList.propTypes = {
+  items: PropTypes.array.isRequired,
 }
 
 export default PastLaunchesList;

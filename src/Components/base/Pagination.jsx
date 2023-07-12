@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import Button from './Button';
+import PropTypes from 'prop-types';
 
 const buttonList = (totalPages, active, onClick) => {
   return Array.from({ length: totalPages }, (_, i) => {
@@ -58,6 +59,14 @@ const Pagination = ({ page, totalPages, hasPrevPage, hasNextPage, setOptions }) 
       </div>
     </div>
   );
+}
+
+Pagination.propTypes = {
+  page: PropTypes.number,
+  totalPages: PropTypes.number,
+  hasPrevPage: PropTypes.bool,
+  hasNextPage: PropTypes.bool,
+  setOptions: PropTypes.func,
 }
 
 export default Pagination;
