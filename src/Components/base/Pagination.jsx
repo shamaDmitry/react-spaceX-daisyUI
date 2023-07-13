@@ -11,8 +11,8 @@ const buttonList = (totalPages, active, onClick) => {
           ...prevState,
           page: i + 1
         }))}
-        className={classNames("capitalize border transition-all flex items-center font-medium py-1 px-2 text-sm dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-slate-800 dark:border-gray-500", {
-          "text-white bg-black": active === i + 1
+        className={classNames("join-item btn btn-sm capitalize border transition-all flex items-center dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-slate-800 dark:border-gray-500", {
+          "btn-active text-white bg-black dark:bg-white dark:text-black": active === i + 1
         })}
       >
         {i + 1}
@@ -42,8 +42,9 @@ const Pagination = ({ page, totalPages, hasPrevPage, hasNextPage, setOptions }) 
             })}
           />
         }
-
-        {totalPages && buttonList(totalPages, page, setOptions)}
+        <div className="join flex-wrap rounded-none gap-2">
+          {totalPages && buttonList(totalPages, page, setOptions)}
+        </div>
 
         {hasNextPage &&
           <Button
